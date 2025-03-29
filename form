@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zamówienie Preorder Płyty</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #121212;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #1f1f1f;
+            text-align: center;
+            padding: 20px;
+        }
+        h1 {
+            margin: 0;
+        }
+        .form-container {
+            margin: 50px;
+            padding: 20px;
+            background-color: #333;
+            border-radius: 8px;
+        }
+        label, input, button {
+            display: block;
+            margin: 10px 0;
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #1d72b8;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #155a8a;
+        }
+        .confirmation {
+            background-color: #222;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        .footer {
+            background-color: #1f1f1f;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Zamów preorder płyty!</h1>
+</header>
+
+<div class="form-container">
+    <form id="orderForm">
+        <label for="name">Imię i nazwisko:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="email">Adres e-mail:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="address">Adres do wysyłki:</label>
+        <input type="text" id="address" name="address" required>
+
+        <label for="quantity">Liczba płyt:</label>
+        <input type="number" id="quantity" name="quantity" min="1" required>
+
+        <button type="submit">Złóż zamówienie</button>
+    </form>
+
+    <div id="confirmation" class="confirmation" style="display: none;">
+        <h2>Dziękujemy za zamówienie!</h2>
+        <p>Oto dane do przelewu:</p>
+        <p><strong>Numer konta:</strong> 12 3456 7890 1234 5678 9012 3456</p>
+        <p><strong>Tytuł przelewu:</strong> Preorder płyty – Imię i nazwisko</p>
+        <p><strong>Cena płyty:</strong> 40 PLN</p>
+        <p>Po dokonaniu przelewu, wyślij potwierdzenie na adres e-mail: <strong>kontakt@twojadomena.pl</strong>.</p>
+    </div>
+</div>
+
+<div class="footer">
+    <p>&copy; 2025 Twoja Strona</p>
+</div>
+
+<script>
+    document.getElementById("orderForm").addEventListener("submit", function(event) {
+        event.preventDefault();
+        
+        var name = document.getElementById("name").value;
+        var email = document.getElementById("email").value;
+        var address = document.getElementById("address").value;
+        var quantity = document.getElementById("quantity").value;
+
+        document.getElementById("confirmation").style.display = "block";
+    });
+</script>
+
+</body>
+</html>
