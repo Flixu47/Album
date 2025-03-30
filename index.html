@@ -4,32 +4,115 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tytuł Albumu - Flix</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Preorder Płyty - Flix (TEST)</title>
+    <style>
+        body {
+            background-color: #121212;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        header, footer {
+            background-color: #1f1f1f;
+            padding: 20px;
+            text-align: center;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            background-color: #2a2a2a;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        input, button {
+            width: 100%;
+            margin-top: 10px;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 4px;
+            border: none;
+        }
+        button {
+            background-color: #1d72b8;
+            color: white;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #155a8a;
+        }
+        .confirmation {
+            display: none;
+            background-color: #222;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 8px;
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <h1>Flix - Tytuł Albumu</h1>
-    </header>
-    <section class="album-cover">
-        <div class="cover-placeholder">OKŁADKA</div>
-    </section>
-    <section class="album-info">
-        <h2>O albumie</h2>
-        <p>Tu wrzucisz krótki opis swojej płyty. Możesz napisać o klimacie, inspiracjach i zawartości.</p>
-        <h3>Tracklista</h3>
-        <ul>
-            <li>1. Tytuł utworu</li>
-            <li>2. Tytuł utworu</li>
-            <li>3. Tytuł utworu</li>
-        </ul>
-        <a href="#" class="preorder-btn">Zamów Preorder</a>
-    </section>
-    <footer>
-        <p>© 2025 Flix</p>
-        <div class="socials">
-            <a href="#">Instagram</a> | <a href="#">YouTube</a> | <a href="#">TikTok</a>
-        </div>
-    </footer>
+
+<header>
+    <h1>Zamów Preorder Płyty</h1>
+</header>
+
+<div class="container">
+    <h2>"Morze Łez" - Flix</h2>
+    <p>Premiera: 1 czerwca 2025</p>
+    <p>Cena: 40 PLN</p>
+    <form id="orderForm">
+        <label>Imię i nazwisko:</label>
+        <input type="text" id="name" required>
+
+        <label>Email:</label>
+        <input type="email" id="email" required>
+
+        <label>Adres do wysyłki:</label>
+        <input type="text" id="address" required>
+
+        <label>Ilość płyt:</label>
+        <input type="number" id="quantity" min="1" required>
+
+        <button type="submit">Złóż zamówienie</button>
+    </form>
+
+    <div id="confirmation" class="confirmation">
+        <h2>Dziękujemy za zamówienie!</h2>
+        <p>Dane do przelewu:</p>
+        <p><strong>Numer konta:</strong> 11 2222 3333 4444 5555 6666 7777</p>
+        <p><strong>Tytuł przelewu:</strong> Preorder Flix - [Twoje imię i nazwisko]</p>
+        <p><strong>Cena:</strong> 40 PLN za sztukę</p>
+        <p>Wyślij potwierdzenie przelewu na: <strong>flixpland@gmail.com</strong></p>
+    </div>
+</div>
+
+<footer>
+    &copy; 2025 Flix
+</footer>
+
+<script>
+    const form = document.getElementById('orderForm');
+    const confirmation = document.getElementById('confirmation');
+
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+        const address = document.getElementById('address').value;
+        const quantity = document.getElementById('quantity').value;
+
+        const orderData = `${name}, ${email}, ${address}, ${quantity}\n`;
+
+        let orders = localStorage.getItem('orders') || '';
+        orders += orderData;
+        localStorage.setItem('orders', orders);
+
+        confirmation.style.display = 'block';
+
+        window.location.href = `mailto:flixpland@gmail.com?subject=Nowe zamówienie preorder&body=${encodeURIComponent(orderData)}`;
+    });
+</script>
+
 </body>
 </html>
